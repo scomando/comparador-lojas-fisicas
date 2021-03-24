@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>interceptor.ServletListener</listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>Search</servlet-name>
+        <servlet-class>servlets.Search</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Imagem</servlet-name>
+        <servlet-class>servlets.Imagem</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Barcode</servlet-name>
+        <servlet-class>servlets.Barcode</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Search</servlet-name>
+        <url-pattern>/Search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Imagem</servlet-name>
+        <url-pattern>/Imagem</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Barcode</servlet-name>
+        <url-pattern>/Barcode</url-pattern>
+    </servlet-mapping>
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>manipular productos</web-resource-name>
+            <url-pattern>/webresources/productos</url-pattern>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+      
+        <auth-constraint>
+            <role-name>administrador</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>jaxrs</realm-name>
+    </login-config>
+    
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
